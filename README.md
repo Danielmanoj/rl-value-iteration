@@ -9,9 +9,24 @@ The FrozenLake environment in OpenAI Gym is a gridworld problem that challenges 
 ## POLICY ITERATION ALGORITHM
 The policy iteration algorithm is a method for finding the optimal policy in a Markov Decision Process (MDP). It alternates between policy evaluation (finding the value function for a fixed policy) and policy improvement (updating the policy using the new value function).
 
-## VALUE ITERATION FUNCTION
+## VALUE ITERATION ALGORITHM
+- Value iteration is a method of computing an optimal MDP policy  and its value.
+- It begins with an initial guess for the value function, and iteratively updates it towards the optimal value function, according to the Bellman optimality equation.
+- The algorithm is guaranteed to converge to the optimal value function, and in the process of doing so, also converges to the optimal policy.
 
-The value iteration algorithm is another method for solving MDPs. It iteratively updates the value function using a Bellman optimality equation until the value function converges. Once the value function converges, the optimal policy can be derived by choosing the action that maximizes the expected value of the next state.
+The algorithm is as follows:
+1. Initialize the value function `V(s)` arbitrarily for all states `s`.
+2. Repeat until convergence:
+    - Initialize aaction-value function `Q(s, a)` arbitrarily for all states `s` and actions `a`.
+    - For all the states s and all the action a of every state:
+        - Update the action-value function `Q(s, a)` using the Bellman equation.
+        - Take the value function `V(s)` to be the maximum of `Q(s, a)` over all actions `a`.
+        - Check if the maximum difference between `Old V` and `new V` is less than `theta`, where theta is a **small positive number** that determines the **accuracy of estimation**.
+3. If the maximum difference between Old V and new V is greater than theta, then
+    - Update the value function `V` with the **maximum action-value** from `Q`.
+    - Go to **step 2**.
+4. The optimal policy can be constructed by taking the **argmax** of the action-value function `Q(s, a)` over all actions `a`.
+5. Return the optimal policy and the optimal value function.
 ### Name: MANOJ G
 ### Register Number:212222240060
 ```
